@@ -16,9 +16,9 @@ public class ChatController {
     @MessageMapping("/app/chat")
     @SendTo("/topic/messages")
     public OutputMessage sendMessage(@Payload InputMessage message) {
-        System.out.println(message);
+        System.out.println(String.format("%s: %s", message.from(), message.text()));
         String time = new SimpleDateFormat("HH:mm").format(new Date());
-        return new OutputMessage(message.getFrom(), message.getText(), time);
+        return new OutputMessage(message.from(), message.text(), time);
     }
 
 }
